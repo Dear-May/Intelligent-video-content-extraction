@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../static/image/logo-mini.ico">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/bootstrap-icons-1.7/bootstrap-icons.css">
+    <script src="../static/dist/js/bootstrap.bundle.min.js"></script>
+    <title>智能视频处理技术研究与应用</title>
+    <style>
+        .navbar {
+            transition: background-color 0.3s;
+        }
+
+        .navbar.scrolled {
+            background-color: black !important;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .video-area {
+            width: 80%;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .video-area video {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .feature-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .feature-button {
+            background-color: #292929;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .feature-button:hover {
+            background-color: #4B4C4C;
+        }
+    </style>
+</head>
+<body>
+<div class="video-box">
+    <video class="video-background" preload="auto" loop playsinline autoplay
+           src="../static/video/bg.mp4"
+           tabindex="-1"
+           muted="muted"></video>
+    <div class="layer d-flex flex-column align-items-start justify-content-between w-100">
+        <div class="d-flex align-items-center justify-content-between w-100 p-3 fixed-top navbar">
+            <img src="../static/image/logo.png" alt="bytedance" class="ms-4"/>
+            <div class="d-flex">
+                <nav class="nav ms-auto">
+                    <ul class="nav-list list-unstyled d-flex">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white fs-4">
+                                <i class="bi bi-app-indicator"></i>
+                                使用项目
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white fs-4">
+                                <i class="bi bi-file-text"></i>
+                                项目介绍
+                            </a>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white fs-4">
+                            <i class="bi bi-person-circle"></i>
+                            团队介绍
+                        </a>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white fs-4">
+                            <i class="bi bi-chat-right-text"></i>
+                            联系我们
+                        </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="slogan">
+            <div class="subtitle">2024人工智能创新大赛</div>
+            <div class="title">智能视频处理技术应用</div>
+            <div class="try-btn">立即使用</div>
+        </div>
+
+        <!--        <footer class="mt-auto text-white-50 text-center footer">-->
+        <!--            <p>由 <a href="#" class="text-white">XXX团队</a>创作, 团队成员:-->
+        <!--                <a href="#" class="text-white">陈才宇</a>.-->
+        <!--                <a href="#" class="text-white">张步云</a>.-->
+        <!--                <a href="#" class="text-white">俞原野</a>.-->
+        <!--            </p>-->
+        <!--        </footer>-->
+    </div>
+</div>
+
+<section class="bg-black from-[#1A1A1A] to-[#000000] text-white py-10 lg:py-20">
+    <div class="video-container">
+        <div class="video-area">
+            <video id="demoVideo" controls autoplay loop muted playsinline>
+                <source src="https://d3phaj0sisr2ct.cloudfront.net/video/actions/effects.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    <div class="feature-buttons">
+        <div class="feature-button"
+             onclick="changeVideo('effects')">Effects and
+            Filters
+        </div>
+        <div class="feature-button"
+             onclick="changeVideo('text')">Text and
+            Subtitles
+        </div>
+        <div class="feature-button"
+             onclick="changeVideo('multitrack')">Multitrack
+            Audio Editing
+        </div>
+        <div class="feature-button"
+             onclick="changeVideo('keyframes')">Keyframe
+            Animation
+        </div>
+        <div class="feature-button"
+             onclick="changeVideo('trim')">Trim and Cut
+            Videos
+        </div>
+    </div>
+</section>
+
+
+<script>
+    window.addEventListener('scroll', function () {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 0) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    function changeVideo(feature) {
+        const video1 = document.getElementById('demoVideo');
+        let videoSrc;
+
+        switch (feature) {
+            case 'effects':
+                videoSrc = 'https://d3phaj0sisr2ct.cloudfront.net/video/actions/effects.mp4';
+                break;
+            case 'text':
+                videoSrc = 'https://d3phaj0sisr2ct.cloudfront.net/video/actions/text.mp4';
+                break;
+            case 'multitrack':
+                videoSrc = 'https://d3phaj0sisr2ct.cloudfront.net/video/actions/multitrack.mp4';
+                break;
+            case 'keyframes':
+                videoSrc = 'https://d3phaj0sisr2ct.cloudfront.net/video/actions/keyframes.mp4';
+                break;
+            case 'trim':
+                videoSrc = 'https://d3phaj0sisr2ct.cloudfront.net/video/actions/trim.mp4';
+                break;
+            default:
+                videoSrc = 'https://d3phaj0sisr2ct.cloudfront.net/video/actions/effects.mp4';
+        }
+
+        video1.src = videoSrc;
+        video1.load();
+    }
+</script>
+
+</body>
+</html>

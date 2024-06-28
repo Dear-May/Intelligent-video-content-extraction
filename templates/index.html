@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../static/image/logo-mini.ico">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/bootstrap-icons-1.7/bootstrap-icons.css">
+    <script src="../static/dist/js/bootstrap.bundle.min.js"></script>
+    <title>智能视频处理技术研究与应用</title>
+    <style>
+        .navbar {
+            transition: background-color 0.3s;
+        }
+
+        .navbar.scrolled {
+            background-color: black !important;
+        }
+
+    </style>
+</head>
+<body>
+<div class="video-box">
+    <video class="video-background" preload="auto" loop playsinline autoplay
+           src="../static/video/bg.mp4"
+           tabindex="-1"
+           muted="muted"></video>
+    <div class="layer d-flex flex-column align-items-start justify-content-between w-100">
+        <div class="d-flex align-items-center justify-content-between w-100 p-3 fixed-top navbar">
+            <img src="../static/image/logo.png" alt="bytedance" class="ms-4"/>
+            <div class="d-flex">
+                <nav class="nav ms-auto">
+                    <ul class="nav-list list-unstyled d-flex">
+                        <li class="nav-item">
+                            <a href="#feature-showcase" class="nav-link text-white fs-4">
+                                <i class="bi bi-app-indicator"></i>
+                                使用项目
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white fs-4">
+                                <i class="bi bi-file-text"></i>
+                                项目介绍
+                            </a>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white fs-4">
+                            <i class="bi bi-person-circle"></i>
+                            团队介绍
+                        </a>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white fs-4">
+                            <i class="bi bi-chat-right-text"></i>
+                            联系我们
+                        </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="slogan">
+            <div class="subtitle">2024人工智能创新大赛</div>
+            <div class="title">智能视频处理技术应用</div>
+            <div class="try-btn">
+                <a href="#feature-showcase" class="text-decoration-none">立即使用</a>
+            </div>
+        </div>
+
+        <footer class="mt-auto text-white-50 text-center footer">
+            <p>由 <a href="#" class="text-white">XXX团队</a>创作, 团队成员:
+                <a href="#" class="text-white">陈才宇</a>.
+                <a href="#" class="text-white">张步云</a>.
+                <a href="#" class="text-white">俞原野</a>.
+            </p>
+        </footer>
+    </div>
+</div>
+
+<section class="bg-black from-[#1A1A1A] to-[#000000] text-white py-10 lg:py-20" id="feature-showcase">
+    <div class="video-container">
+        <div class="video-area">
+            <video id="demoVideo" controls autoplay loop muted playsinline>
+                <source src="https://d3phaj0sisr2ct.cloudfront.net/video/actions/effects.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <a href="/sb.html" id="video-link" class="video-button">立刻使用</a>
+        </div>
+    </div>
+    <div class="feature-buttons">
+        <div class="feature-button"
+             onclick="changeVideo('effects')">视频水印去除
+        </div>
+        <div class="feature-button"
+             onclick="changeVideo('text')">字幕翻译
+        </div>
+        <div class="feature-button"
+             onclick="changeVideo('multitrack')">图像增强
+        </div>
+        <div class="feature-button"
+             onclick="changeVideo('keyframes')">视频目标跟踪
+        </div>
+    </div>
+</section>
+
+<footer class="d-flex flex-wrap justify-content-between align-items-center pt-4 py-3 border-top bg-black text-white-50">
+    <div class="col-md-4 d-flex align-items-center">
+        <a href="/" class="mb-3 me-2 mb-md-0 text-white text-decoration-none lh-1">
+            <svg class="bi" width="30" height="24">
+                <use xlink:href="#bootstrap"/>
+            </svg>
+        </a>
+        <span class="mb-3 mb-md-0 text-secondary">&copy; 2024 Company, Inc</span>
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+        <li class="ms-3"><a class="text-white" href="#">
+            <img src="../static/image/logo-mini.png" style="width: 50px; height: 50px;" alt="bytedance">
+        </a></li>
+        <li class="ms-3"><a class="text-whitee" href="#">
+            <svg class="bi" width="24" height="24">
+                <use xlink:href="#instagram"/>
+            </svg>
+        </a></li>
+        <li class="ms-3"><a class="text-white" href="#">
+            <svg class="bi" width="24" height="24">
+                <use xlink:href="#facebook"/>
+            </svg>
+        </a></li>
+    </ul>
+</footer>
+
+<script>
+    window.addEventListener('scroll', function () {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 0) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    function changeVideo(feature) {
+        const video1 = document.getElementById('demoVideo');
+        const videoLink = document.getElementById('video-link');
+        let videoSrc;
+        let videohref;
+
+        switch (feature) {
+            case 'effects':
+                videoSrc = 'https://d3phaj0sisr2ct.cloudfront.net/video/actions/effects.mp4';
+                videohref = '/sb.html'
+                break;
+            case 'text':
+                videoSrc = '../static/video/SBDemo.mp4';
+                videohref = '/hr.html'
+                break;
+            case 'multitrack':
+                videoSrc = 'https://d3phaj0sisr2ct.cloudfront.net/video/actions/multitrack.mp4';
+                videohref = '/vt.html'
+                break;
+            case 'keyframes':
+                videoSrc = '../static/video/VTTDemo.mp4';
+                videohref = '/sb.html'
+                break;
+            default:
+                videoSrc = 'https://d3phaj0sisr2ct.cloudfront.net/video/actions/effects.mp4';
+                videohref = '#'
+        }
+
+        video1.src = videoSrc;
+        videoLink.href = videohref;
+        video1.load();
+    }
+</script>
+
+</body>
+</html>

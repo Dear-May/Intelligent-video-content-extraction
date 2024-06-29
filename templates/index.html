@@ -18,42 +18,45 @@
         .navbar.scrolled {
             background-color: black !important;
         }
-
     </style>
 </head>
 <body>
-<div class="video-box">
+<div class="video-box" id="home">
     <video class="video-background" preload="auto" loop playsinline autoplay
            src="../static/video/bg.mp4"
            tabindex="-1"
            muted="muted"></video>
     <div class="layer d-flex flex-column align-items-start justify-content-between w-100">
         <div class="d-flex align-items-center justify-content-between w-100 p-3 fixed-top navbar">
-            <img src="../static/image/logo.png" alt="bytedance" class="ms-4"/>
+            <a href="#home" class="scroll-link">
+                <img src="../static/image/logo.png" alt="bytedance" class="ms-4"/>
+            </a>
             <div class="d-flex">
                 <nav class="nav ms-auto">
                     <ul class="nav-list list-unstyled d-flex">
                         <li class="nav-item">
-                            <a href="#feature-showcase" class="nav-link text-white fs-4">
+                            <a href="#feature-showcase" class="nav-link text-white fs-4 scroll-link">
                                 <i class="bi bi-app-indicator"></i>
                                 使用项目
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white fs-4">
+                            <a href="#introduction" class="nav-link text-white fs-4 scroll-link">
                                 <i class="bi bi-file-text"></i>
                                 项目介绍
                             </a>
                         </li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white fs-4">
-                            <i class="bi bi-person-circle"></i>
-                            团队介绍
-                        </a>
+                        <li class="nav-item">
+                            <a href="#numbers" class="nav-link text-white fs-4 scroll-link">
+                                <i class="bi bi-person-circle"></i>
+                                团队介绍
+                            </a>
                         </li>
-                        <li class="nav-item"><a href="#" class="nav-link text-white fs-4">
-                            <i class="bi bi-chat-right-text"></i>
-                            联系我们
-                        </a>
+                        <li class="nav-item">
+                            <a href="#callus" class="nav-link text-white fs-4 scroll-link">
+                                <i class="bi bi-chat-right-text"></i>
+                                联系我们
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -64,7 +67,7 @@
             <div class="subtitle">2024人工智能创新大赛</div>
             <div class="title">智能视频处理技术应用</div>
             <div class="try-btn">
-                <a href="#feature-showcase" class="text-decoration-none">立即使用</a>
+                <a href="#feature-showcase" class="text-decoration-none scroll-link">立即使用</a>
             </div>
         </div>
 
@@ -78,7 +81,105 @@
     </div>
 </div>
 
+<div>
+    <div class="b-example-divider"></div>
+    <div class="container my-5" id="introduction">
+        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+            <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+                <h1 class="display-4 fw-bold lh-1 text-body-emphasis">项目背景</h1>
+                <p class="lead">
+                    &nbsp;&nbsp;&nbsp;&nbsp;随着互联网和多媒体技术的快速发展，视频和图像已成为人们获取信息和娱乐的重要途径。<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;然而，视频与图像中的字幕识别、字幕翻译、视频水印去除、画面增强以及视频图像跟踪等技术挑战，仍需要进一步研究和优化。<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;对于网络视频而言，人们越来越重视对视频的观影体验，而良好的观影体验取决于多个方面的因素影响。其中，视频画面质量，字幕适配、翻译等格为突出。<br>
+                    &nbsp;&nbsp; &nbsp;&nbsp;随着计算机技术的不断发展，人工智能技术的应用越来越广泛，视频图像的处理技术也越来越丰富。
+                </p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+                    <p>本项目研究的内容：基于人工智能技术，开发一个多视频处理功能的应用。</p>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+                <img class="rounded-lg-3" src="../static/image/introduction.jpg" alt="introduction" width="720">
+            </div>
+        </div>
+    </div>
+
+    <div class="container px-4 py-5 rounded-3" id="featured-3">
+        <h1 class="display-4 fw-bold lh-1 text-body-emphasis border-bottom">项目亮点</h1>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
+                    <img src="../static/image/VTT.png" alt="VTT" style="max-width: 50%; height: auto;">
+                </div>
+                <h3 class="fs-2 text-body-emphasis">实时视频图像跟踪</h3>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;采用基于目标检测的高效跟踪算法，提高视频图像跟踪的实时性和准确性，适用于安防监控等对实时性要求高的应用场景。
+                </p>
+            </div>
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
+                    <img src="../static/image/translation.png" alt="translation" style="max-width: 50%; height: auto;">
+                </div>
+                <h3 class="fs-2 text-body-emphasis">跨语言字幕翻译优化</h3>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;基于人工智能的机器翻译技术，通过引入多语言翻译模型和优化算法，提升字幕翻译的准确率和速度，特别是针对中文等复杂语言的翻译效果进行优化。
+                </p>
+            </div>
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
+                    <img src="../static/image/ie.png" alt="ie" style="max-width: 50%; height: auto;">
+                </div>
+                <h3 class="fs-2 text-body-emphasis">动态视频增强技术</h3>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;结合先进的时空信息处理方法，针对视频中的动态场景进行去噪和画面增强，实现视频质量的整体提升。
+                </p>
+            </div>
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
+                    <img src="../static/image/wr.png" alt="wr" style="max-width: 50%; height: auto;">
+                </div>
+                <h3 class="fs-2 text-body-emphasis">自适应视频水印去除</h3>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;通过深度学习模型的训练，使系统能够智能识别和去除不同类型和位置的视频水印，并在去除水印的同时尽量保留原始视频画面的细节和质量。
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="numbers" class="bg-black">
+    <div class="container marketing text-center text-white">
+        <div class="py-3 pb-3 pt-5">
+            <h1 class="display-4 fw-bold lh-1 border-bottom">项目成员</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <img src="../static/image/person1.jpg" class="bd-placeholder-img rounded-circle original-size"
+                     width="140" height="140" alt="Placeholder">
+                <h2 class="fw-normal">陈才宇</h2>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;具有一定的OpenCV和扎实的Python语言基础，曾参与数学建模、数维杯、大唐杯、计算机设计大赛等多项学科竞赛，对竞赛有一定经验。
+                </p>
+            </div>
+            <div class="col-lg-4">
+                <img src="../static/image/person2.jpg" class="bd-placeholder-img rounded-circle original-size"
+                     width="140" height="140" alt="Placeholder">
+                <h2 class="fw-normal">张步云</h2>
+                <p> &nbsp;&nbsp;&nbsp;&nbsp;具有一定的Python基础，曾参加过数学建模等学科竞赛，对视觉项目有一定的经验。</p>
+            </div>
+            <div class="col-lg-4">
+                <img src="../static/image/person3.jpg" class="bd-placeholder-img rounded-circle original-size"
+                     width="140" height="140" alt="Placeholder">
+                <h2 class="fw-normal">俞原野</h2>
+                <p>具有一定的OpenCV和Python基础，并在视频处理方面有一定的实战经验，同时对视频AI也有一定的了解。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section class="bg-black from-[#1A1A1A] to-[#000000] text-white py-10 lg:py-20" id="feature-showcase">
+    <div class="py-10 pb-3 pt-5">
+        <h1 class="display-4 fw-bold lh-1 border-bottom text-center">成果展示</h1>
+    </div>
     <div class="video-container">
         <div class="video-area">
             <video id="demoVideo" controls autoplay loop muted playsinline>
@@ -88,7 +189,7 @@
             <a href="/WatermarkRemoval" id="video-link" class="video-button">立刻使用</a>
         </div>
     </div>
-    <div class="feature-buttons">
+    <div class="feature-buttons pb-5">
         <div class="feature-button"
              onclick="changeVideo('effects')">视频水印去除
         </div>
@@ -104,9 +205,10 @@
     </div>
 </section>
 
-<footer class="d-flex flex-wrap justify-content-between align-items-center pt-4 py-3 border-top bg-black text-white-50">
+<footer class="d-flex flex-wrap justify-content-between align-items-center pt-4 py-3 border-top bg-black text-white-50"
+        id="callus">
     <div class="col-md-4 d-flex align-items-center">
-        <a href="#" class="mb-3 me-2 mb-md-0 text-white text-decoration-none lh-1">
+        <a href="#home" class="mb-3 me-2 mb-md-0 text-white text-decoration-none lh-1 scroll-link">
             <img src="../static/image/logo.png" style="max-width: 60%; height: auto;" alt="bytedance">
         </a>
     </div>
@@ -137,6 +239,16 @@
             navbar.classList.remove('scrolled');
         }
     });
+
+    document.querySelectorAll('.scroll-link').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    })
 
     function changeVideo(feature) {
         const video1 = document.getElementById('demoVideo');

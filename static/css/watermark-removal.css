@@ -1,0 +1,51 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+}
+
+.main-content {
+    margin-left: 250px;
+    flex-grow: 1;
+    padding: 1rem;
+}
+
+.btn-dark {
+    background-color: #212529;
+    border: none;
+}
+
+.btn-dark:hover {
+    background-color: #343a40;
+}
+
+.rounded-3 {
+    border-radius: 1rem !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 35%;
+    height: 0;
+}
+
+.video-container > .bg-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    text-align: center;
+}

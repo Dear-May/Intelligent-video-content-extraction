@@ -3,6 +3,7 @@ import re
 
 from flask import Flask, render_template, request, jsonify
 
+from image_enhancement import enhance_video
 from video_subtitle_recognition import video_subtitle_recognition
 from watermark_removal import remove_watermark_from_video
 
@@ -19,6 +20,21 @@ if not os.path.exists(UPLOAD_FOLDER):
 
 if not os.path.exists(PROCESSED_FOLDER):
     os.makedirs(PROCESSED_FOLDER)
+
+
+@app.route('/image_enhancement', methods=['POST'])
+def image_enhancement():
+    data = request.json
+    file_name = data.get('videoUrl')
+    match = re.search(r'/([^/]+\.[a-zA-Z0-9]+)$', file_name)
+    if match:
+        file_name = match.group(1)
+
+    original_file_path = os.path.join(app.config['UPLOAD_FOLDER'], file_name)
+    processed_file_path = os.path.join(app.config['PROCESSED_FOLDER'], f'enhanced_{file_name}')
+    enhance_video(original_file_path, processed_file_path)
+    print('success')
+    return jsonify({'fileUrl': processed_file_path}), 200
 
 
 @app.route('/video_translation', methods=['POST'])

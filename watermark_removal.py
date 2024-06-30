@@ -95,4 +95,7 @@ def remove_watermark_from_video(input_video_path, top_left, bottom_right, filena
     command_no_rect_h264 = f'ffmpeg -y -i {final_output_no_rect_1} -vcodec h264 {final_output_no_rect}'
     subprocess.run(command_no_rect_h264, shell=True)
 
+    os.remove(f"{output_dir}/1{filename}")
+    os.remove(audio_path)
+
     print("去除水印完成，结果保留为", final_output_no_rect)

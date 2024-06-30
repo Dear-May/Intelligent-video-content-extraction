@@ -3,6 +3,7 @@ import re
 
 from flask import Flask, render_template, request, jsonify
 
+from video_subtitle_recognition import video_subtitle_recognition
 from watermark_removal import remove_watermark_from_video
 
 app = Flask(__name__)
@@ -20,6 +21,24 @@ if not os.path.exists(PROCESSED_FOLDER):
     os.makedirs(PROCESSED_FOLDER)
 
 
+@app.route('/video_translation', methods=['POST'])
+def video_translation():
+    data = request.json
+    start_time = data.get('start_time')
+    end_time = data.get('end_time')
+    file_name = data.get('videoUrl')
+    match = re.search(r'/([^/]+\.[a-zA-Z0-9]+)$', file_name)
+    if match:
+        file_name = match.group(1)
+
+    original_file_path = os.path.join(app.config['UPLOAD_FOLDER'], file_name)
+    translated_file_path = os.path.join(app.config['PROCESSED_FOLDER'], f'translated_{file_name}')
+
+    video_subtitle_recognition(start_time, end_time, original_file_path, app.config['PROCESSED_FOLDER'], file_name)
+    print('success')
+    return jsonify({'fileUrl': translated_file_path}), 200
+
+
 @app.route('/remove_watermark', methods=['POST'])
 def remove_watermark():
     data = request.get_json()
@@ -33,9 +52,8 @@ def remove_watermark():
         file_name = match.group(1)
 
     original_file_path = os.path.join(app.config['UPLOAD_FOLDER'], file_name)
-    processed_file_path = os.path.join(app.config['PROCESSED_FOLDER'], f'processed_{file_name}')
-    finally_file_name = f'processed_{file_name}'
-    print(processed_file_path, finally_file_name)
+    processed_file_path = os.path.join(app.config['PROCESSED_FOLDER'], f'watermark_removed_{file_name}')
+    finally_file_name = f'watermark_removed_{file_name}'
     top_left = (left_top_x, left_top_y)
     bottom_right = (right_bottom_x, right_bottom_y)
     remove_watermark_from_video(original_file_path, top_left, bottom_right, finally_file_name,

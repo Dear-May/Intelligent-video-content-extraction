@@ -89,9 +89,9 @@
     <div class="container p-3 pb-4 rounded-3 shadow-sm">
         <div class="row mb-4">
             <div class="col" id="title-container">
-                <h1 class="display-6 fw-bold">视频去水印</h1>
+                <h1 class="display-6 fw-bold">视频目标跟踪</h1>
                 <p class="lead fs-6">
-                    清除视频中遮挡画面的水印、徽标，以及品牌标志，轻松提升视频观感体验。上传视频即可体验实时去水印效果。</p>
+                    视频目标跟踪是指在视频中识别出目标并跟踪其运动轨迹的技术。目标跟踪技术可以用于监控、安全、智能化等领域。</p>
             </div>
             <div class="col rounded-3 align-content-center" style="border-style: dashed; height: 120px;"
                  id="upload-button1">
@@ -131,7 +131,7 @@
         </div>
         <div class="d-flex justify-content-center">
             <button class="btn btn-dark btn-lg mt-4" id="watermark-removal-button" style="display: none;"
-                    id="watermark-removal-button" onclick="watemarkRemoval()">开始去水印
+                    id="watermark-removal-button" onclick="VideoTargetTracking()">开始跟踪目标
             </button>
         </div>
     </div>
@@ -168,7 +168,7 @@
         const targetDiv = document.getElementById("title-container");
         const newHtmlContent = `
         <p class="lead fs-6">
-            请在下面的输入框中输入水印四个角的坐标。
+            请在下面的输入框中输入目标区域的坐标。
         </p>
         <form id="watermark-coordinates-form">
             <div class="row">
@@ -188,7 +188,7 @@
         targetDiv.innerHTML = newHtmlContent;
     }
 
-    function watemarkRemoval() {
+    function VideoTargetTracking() {
         const leftTopX = document.getElementById("top-left-x").value;
         const leftTopY = document.getElementById("top-left-y").value;
         const rightBottomX = document.getElementById("bottom-right-x").value;
@@ -197,7 +197,7 @@
 
         $.ajax({
             type: "POST",
-            url: "/remove_watermark",
+            url: "/video_target_tracking",
             data: JSON.stringify({
                 leftTopX: leftTopX,
                 leftTopY: leftTopY,
@@ -238,6 +238,9 @@
         });
     }
 
+    document.getElementById("upload-button1").addEventListener("click", function () {
+        document.getElementById("video-upload1").click();
+    });
 </script>
 </body>
 </html>

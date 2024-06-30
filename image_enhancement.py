@@ -30,11 +30,6 @@ def img_enhance(image, brightness, color, contrast, sharpness):
 
 # 视频增强函数
 def enhance_video(vid_path, output_path):
-    # 获取视频文件名
-    base_dir, video_name_1 = os.path.split(output_path)
-    video_name_1 = "1" + video_name_1
-    # 合并路径名
-    output_path_1 = f"{base_dir}/{video_name_1}"
     # 打开视频文件
     src_video = cv2.VideoCapture(vid_path)
     fps = int(src_video.get(cv2.CAP_PROP_FPS))  # 获取视频的帧率（每秒的帧数）
@@ -42,8 +37,8 @@ def enhance_video(vid_path, output_path):
     height = int(src_video.get(cv2.CAP_PROP_FRAME_HEIGHT))  # 获取视频帧的高度
     total_frame = int(src_video.get(cv2.CAP_PROP_FRAME_COUNT))  # 获取视频的总帧数
     # 初始化视频写入对象
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    out_video = cv2.VideoWriter(output_path_1, fourcc, fps, (width, height))
+    fourcc = cv2.VideoWriter_fourcc(*'h264')
+    out_video = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
     # 遍历视频的所有帧
     for i in tqdm(range(total_frame)):  # 使用 tqdm 显示进度条
@@ -65,14 +60,6 @@ def enhance_video(vid_path, output_path):
 
     src_video.release()  # 释放视频文件
     out_video.release()  # 释放输出视频文件
-
-    final_output_no_rect_1 = output_path_1
-    final_output_no_rect = output_path
-
-    command_no_rect_h264 = f'ffmpeg -y -i {final_output_no_rect_1} -vcodec h264 {final_output_no_rect}'
-    subprocess.run(command_no_rect_h264, shell=True)
-
-    os.remove(final_output_no_rect_1)
 
     print(f"视频增强完成，结果已保存至 {output_path}")
 

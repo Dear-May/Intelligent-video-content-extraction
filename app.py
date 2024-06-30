@@ -3,8 +3,10 @@ import re
 
 from flask import Flask, render_template, request, jsonify
 
+from Units import check_and_modify_video_codec
 from image_enhancement import enhance_video
 from video_subtitle_recognition import video_subtitle_recognition
+from video_target_tracking import video_target_tracking
 from watermark_removal import remove_watermark_from_video
 
 app = Flask(__name__)
@@ -22,8 +24,29 @@ if not os.path.exists(PROCESSED_FOLDER):
     os.makedirs(PROCESSED_FOLDER)
 
 
+@app.route('/video_target_tracking', methods=['POST'])
+def video_target_tracking_api():
+    data = request.json
+    left_top_x = data.get('leftTopX')
+    left_top_y = data.get('leftTopY')
+    right_bottom_x = data.get('rightBottomX')
+    right_bottom_y = data.get('rightBottomY')
+    file_name = data.get('videoUrl')
+    match = re.search(r'/([^/]+\.[a-zA-Z0-9]+)$', file_name)
+    if match:
+        file_name = match.group(1)
+
+    original_file_path = os.path.join(app.config['UPLOAD_FOLDER'], file_name)
+    processed_file_path = os.path.join(app.config['PROCESSED_FOLDER'], f'tracked_{file_name}')
+    top_left = (left_top_x, left_top_y)
+    bottom_right = (right_bottom_x, right_bottom_y)
+    video_target_tracking(original_file_path, top_left, bottom_right, processed_file_path)
+    print('success')
+    return jsonify({'fileUrl': processed_file_path}), 200
+
+
 @app.route('/image_enhancement', methods=['POST'])
-def image_enhancement():
+def image_enhancement_api():
     data = request.json
     file_name = data.get('videoUrl')
     match = re.search(r'/([^/]+\.[a-zA-Z0-9]+)$', file_name)
@@ -38,7 +61,7 @@ def image_enhancement():
 
 
 @app.route('/video_translation', methods=['POST'])
-def video_translation():
+def video_translation_api():
     data = request.json
     start_time = data.get('start_time')
     end_time = data.get('end_time')
@@ -56,7 +79,7 @@ def video_translation():
 
 
 @app.route('/remove_watermark', methods=['POST'])
-def remove_watermark():
+def remove_watermark_api():
     data = request.get_json()
     left_top_x = data.get('leftTopX')
     left_top_y = data.get('leftTopY')
@@ -92,6 +115,7 @@ def upload_video():
         # 保存文件到指定路径
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         file.save(file_path)
+        check_and_modify_video_codec(file_path)
         # 返回相对路径
         file_url = os.path.join('/static/video/upload_video', file.filename)
         return jsonify({'fileUrl': file_url}), 200
